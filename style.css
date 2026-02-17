@@ -1,0 +1,17 @@
+body{
+  font-family:sans-serif;
+  background:#111;
+  color:#fff;
+}
+
+#grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:15px;
+}
+
+.card{
+  background:#222;
+  padding:10px;
+  border-radius:8px;
+}
