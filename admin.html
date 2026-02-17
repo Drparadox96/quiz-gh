@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Admin</title>
+</head>
+<body>
+
+<script>
+  // VERY basic gate — not secure
+  const pass = prompt("Enter admin password:");
+  if(pass !== "changeme123"){
+    document.body.innerHTML="Access denied";
+    throw new Error("Denied");
+  }
+</script>
+
+<h2>Add Video</h2>
+
+<input id="thumb" placeholder="Thumbnail URL"><br>
+<input id="link" placeholder="Download URL"><br>
+<button onclick="addVideo()">Save</button>
+
+<script src="app.js"></script>
+</body>
+</html>
