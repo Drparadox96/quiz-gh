@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167"
+     crossorigin="anonymous"></script>
+<meta charset="UTF-8">
+<title>Watch Video</title>
+
+<style>
+  body{
+    font-family:sans-serif;
+    background:#111;
+    color:#fff;
+    text-align:center;
+    padding-top:80px;
+  }
+
+  .box{
+    background:#222;
+    padding:30px;
+    border-radius:12px;
+    display:inline-block;
+  }
+
+  button{
+    margin-top:20px;
+    padding:14px 28px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    background:#e50914;
+    color:#fff;
+    cursor:pointer;
+  }
+
+  button:hover{
+    background:#ff1f2b;
+  }
+</style>
+</head>
+<body>
+
+<div class="box">
+
+  <h2>Click to Watch Video</h2>
+
+  <!-- 🔽 Place your Google Ads code here -->
+  <div id="ad-slot" style="margin:20px 0;">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167"
+     crossorigin="anonymous"></script>
+<!-- header below -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5504233917685167"
+     data-ad-slot="5681739844"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+
+  <button onclick="go()">Watch Now</button>
+
+</div>
+
+<script>
+  const params = new URLSearchParams(location.search);
+  const target = params.get("to");
+
+  function go(){
+    if(!target){
+      alert("Invalid link");
+      return;
+    }
+    window.location.href = target;
+  }
+</script>
+
+</body>
+</html>
