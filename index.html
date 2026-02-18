@@ -50,9 +50,10 @@ button{
 
 <div class="card">
 <h2>100 Riddle Challenge</h2>
-  <p style="color:#38bdf8;font-weight:bold;">
+<p style="color:#38bdf8;font-weight:bold;">
 Solve all riddles and win GHS 5000
 </p>
+
 <div id="progress">Riddle 1 / 100</div>
 <p id="riddle"></p>
 
@@ -63,11 +64,11 @@ Solve all riddles and win GHS 5000
 <div id="feedback"></div>
 
 <div id="success">
-🎉 You solved all riddles!  
+🎉 Challenge Complete  
 <br><br>
-<a href="https://wa.me/233598866489" target="_blank">
-Click here to claim your score
-</a>
+<span id="finalScore"></span>
+<br><br>
+<div id="claimLink"></div>
 </div>
 </div>
 
@@ -179,6 +180,7 @@ const riddles = [
 ];
 
 let index = 0;
+let score = 0;
 
 function normalize(s){
  return s.trim().toLowerCase();
@@ -191,36 +193,48 @@ function showRiddle(){
 }
 
 function submitAnswer(){
+
  let user = normalize(document.getElementById("answer").value);
  let correct = riddles[index][1];
 
- if(user === correct){
-     index++;
-     document.getElementById("feedback").textContent="Correct ✔";
-     document.getElementById("answer").value="";
+ if(user === correct) score++;
 
-     if(index === riddles.length){
-         document.getElementById("success").style.display="block";
-         document.getElementById("riddle").style.display="none";
-         return;
+ index++;
+ document.getElementById("answer").value="";
+ document.getElementById("feedback").textContent="";
+
+ if(index === riddles.length){
+
+     document.getElementById("success").style.display="block";
+     document.getElementById("riddle").style.display="none";
+     document.getElementById("answer").style.display="none";
+     document.querySelector("button").style.display="none";
+
+     document.getElementById("finalScore").innerHTML =
+         "Your Score: " + score + " / 100";
+
+     if(score === 100){
+         document.getElementById("claimLink").innerHTML =
+         '<a href="https://wa.me/233598866489" target="_blank">Click here to claim your score</a>';
      }
-     showRiddle();
- } else {
-     document.getElementById("feedback").textContent="Try again ✖";
+
+     return;
  }
+
+ showRiddle();
 }
 
 showRiddle();
 
 </script>
-  <!-- Google tag (gtag.js) -->
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZBQNZVPZ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-4MZBQNZVPZ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-4MZBQNZVPZ');
 </script>
+
 </body>
-  </html>
+</html>
