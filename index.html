@@ -173,23 +173,127 @@ const riddles = [
 ["What breaks but never falls?","day"],
 ["What has a horn but doesn’t honk?","rhino"],
 ["What has scales but no music?","fish"],
+<script>
+
+const riddles = [
+["What has keys but can't open locks?","keyboard"],
+["What has hands but cannot clap?","clock"],
+["What has a face and two hands but no arms?","clock"],
+["What runs but never walks?","water"],
+["What has a neck but no head?","bottle"],
+["What gets wetter as it dries?","towel"],
+["What has one eye but cannot see?","needle"],
+["What goes up but never comes down?","age"],
+["What has teeth but can't bite?","comb"],
+["What begins with T ends with T and has tea inside?","teapot"],
+["I speak without a mouth and hear without ears. What am I?","echo"],
+["What can travel around the world while staying in a corner?","stamp"],
+["The more you take the more you leave behind","footsteps"],
+["What has many rings but no fingers?","tree"],
+["What has legs but doesn't walk?","table"],
+["What has an eye but cannot see?","hurricane"],
+["What is always in front of you but can't be seen?","future"],
+["What can you catch but not throw?","cold"],
+["What has a head and tail but no body?","coin"],
+["What has words but never speaks?","book"],
+["I shave every day but my beard stays the same","barber"],
+["What has branches but no fruit trunk or leaves?","bank"],
+["What can fill a room but takes no space?","light"],
+["If you drop me I'm sure to crack","egg"],
+["What comes once in a minute twice in a moment never in a thousand years?","m"],
+["What goes through cities and fields but never moves?","road"],
+["I’m tall when young short when old","candle"],
+["What has a bottom at the top?","legs"],
+["What invention lets you look through a wall?","window"],
+["What can’t talk but will reply when spoken to?","echo"],
+["What building has the most stories?","library"],
+["The more you remove from me the bigger I get","hole"],
+["What kind of band never plays music?","rubber band"],
+["What has four wheels and flies?","garbage truck"],
+["What has a heart that doesn’t beat?","artichoke"],
+["I have cities but no houses","map"],
+["What has a thumb and four fingers but isn’t alive?","glove"],
+["What gets bigger the more you take away?","hole"],
+["What has ears but cannot hear?","corn"],
+["What has one head one foot and four legs?","bed"],
+["I’m full of holes but hold water","sponge"],
+["What begins with E but has only one letter?","envelope"],
+["What has many keys but can’t play music?","piano"],
+["What gets sharper the more you use it?","brain"],
+["What has a ring but no finger?","phone"],
+["I fly without wings cry without eyes","cloud"],
+["What can you hold without touching?","breath"],
+["What has a spine but no bones?","book"],
+["What is always running but never tired?","river"],
+["What has a bark but no bite?","tree"],
+["What has stripes but no color?","zebra"],
+["What has a crown but no head?","pineapple"],
+["I have lakes but no water","map"],
+["What has a mouth but doesn’t eat?","river"],
+["What goes up and down without moving?","stairs"],
+["What can’t be used until broken?","egg"],
+["I’m not alive but I grow","crystal"],
+["What has four eyes but cannot see?","mississippi"],
+["What starts with P ends with E and has thousands of letters?","post office"],
+["What has hands but can’t hold anything?","clock"],
+["What is cut on a table but never eaten?","cards"],
+["What has many needles but doesn’t sew?","pine tree"],
+["What runs around a house but doesn’t move?","fence"],
+["What has an end but no beginning?","stick"],
+["What’s orange and sounds like a parrot?","carrot"],
+["What has four legs in morning two at noon three evening?","man"],
+["What has roots nobody sees","mountain"],
+["I’m light as feather but strongest man can’t hold me long","breath"],
+["What comes down but never goes up?","rain"],
+["What gets broken without being held?","promise"],
+["What kind of coat only gets put on when wet?","paint"],
+["I have wings but cannot fly","penguin"],
+["What is always hungry must be fed?","fire"],
+["What has wheels and eats metal?","train"],
+["What can you hear but not see?","sound"],
+["What has no life but can die?","battery"],
+["What has numbers but no math?","phone"],
+["What has pages but no ink?","calendar"],
+["What is black when clean white when dirty?","chalkboard"],
+["What can you break with a word?","silence"],
+["What has keys but no doors?","piano"],
+["What goes up when rain comes down?","umbrella"],
+["What can’t be seen but fills room?","air"],
+["What has shape but no weight?","shadow"],
+["What goes up chimney down but not down up?","umbrella"],
+["What is yours but others use more?","name"],
+["What has 13 hearts no organs?","deck"],
+["What comes before thunder?","lightning"],
+["What kind of room has no doors?","mushroom"],
+["What goes in hard comes out soft?","gum"],
+["What has one letter starts and ends?","envelope"],
+["What do you buy to eat but never eat?","plate"],
+["What has holes but holds liquid?","sponge"],
+["What can run but never walks mouth but never talks?","river"],
+["What falls but never breaks?","night"],
+["What breaks but never falls?","day"],
+["What has a horn but doesn’t honk?","rhino"],
+["What has scales but no music?","fish"],
 ["What’s always ahead never behind?","future"],
 ["What has feet but no legs?","yardstick"],
 ["What gets longer when pulled?","rubber band"],
 ["What has no beginning middle end?","circle"]
 ];
 
-let index = 0;
-let score = 0;
+let index = parseInt(localStorage.getItem("riddleIndex")) || 0;
+let score = parseInt(localStorage.getItem("riddleScore")) || 0;
 
 function normalize(s){
  return s.trim().toLowerCase();
 }
 
 function showRiddle(){
+ if(index >= riddles.length){
+     finish();
+     return;
+ }
  document.getElementById("riddle").textContent = riddles[index][0];
- document.getElementById("progress").textContent =
-     `Riddle ${index+1} / 100`;
+ document.getElementById("progress").textContent = `Riddle ${index+1} / 100`;
 }
 
 function submitAnswer(){
@@ -200,33 +304,35 @@ function submitAnswer(){
  if(user === correct) score++;
 
  index++;
- document.getElementById("answer").value="";
- document.getElementById("feedback").textContent="";
 
- if(index === riddles.length){
+ localStorage.setItem("riddleIndex", index);
+ localStorage.setItem("riddleScore", score);
 
-     document.getElementById("success").style.display="block";
-     document.getElementById("riddle").style.display="none";
-     document.getElementById("answer").style.display="none";
-     document.querySelector("button").style.display="none";
+ location.reload(); // force refresh
+}
 
-     document.getElementById("finalScore").innerHTML =
-         "Your Score: " + score + " / 100";
+function finish(){
 
-     if(score === 100){
-         document.getElementById("claimLink").innerHTML =
-         '<a href="https://wa.me/233598866489" target="_blank">Click here to claim your score</a>';
-     }
+ document.getElementById("success").style.display="block";
+ document.getElementById("riddle").style.display="none";
+ document.getElementById("answer").style.display="none";
+ document.querySelector("button").style.display="none";
 
-     return;
+ document.getElementById("finalScore").innerHTML =
+ "Your Score: " + score + " / 100";
+
+ if(score === 100){
+     document.getElementById("claimLink").innerHTML =
+     '<a href="https://wa.me/233598866489" target="_blank">Click here to claim your score</a>';
  }
 
- showRiddle();
+ localStorage.removeItem("riddleIndex");
+ localStorage.removeItem("riddleScore");
 }
 
 showRiddle();
 
-</script>
+ </script>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZBQNZVPZ"></script>
 <script>
