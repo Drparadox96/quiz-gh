@@ -1,245 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5504233917685167"
-     crossorigin="anonymous"></script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>100 Riddle Challenge</title>
-
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#0f172a;
-    color:#fff;
-    text-align:center;
-    padding:20px;
-}
-.card{
-    background:#1e293b;
-    padding:25px;
-    border-radius:12px;
-    max-width:600px;
-    margin:auto;
-}
-input{
-    padding:10px;
-    width:80%;
-    margin-top:10px;
-    border-radius:6px;
-    border:none;
-}
-button{
-    margin-top:12px;
-    padding:10px 15px;
-    border:none;
-    border-radius:6px;
-    background:#38bdf8;
-    font-weight:bold;
-    cursor:pointer;
-}
-#success{
-    display:none;
-    margin-top:20px;
-    font-size:20px;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANK Society</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<body class="bg-gray-50 text-gray-800">
 
-<body>
+  <!-- Header -->
+  <header class="bg-blue-600 text-white p-4 text-center">
+    <h1 class="text-2xl font-bold">ANK Society</h1>
+    <p class="mt-2">A mutual fund for collective risk protection</p>
+  </header>
 
-<div class="card">
-<h2>100 Riddle Challenge</h2>
-<p style="color:#38bdf8;font-weight:bold;">
-Solve all riddles and win GHS 5000
-</p>
+  <!-- Main Section -->
+  <main class="container mx-auto my-8 px-4">
+    <section class="bg-white rounded-lg shadow-lg p-6 text-center">
+      <h2 class="text-xl font-semibold mb-4">Join ANK Society</h2>
+      <p class="mb-6">Contribute to a secure pool controlled by 11 trusted members. The funds are used only for emergencies and risk coverage. No profits or shares are distributed.</p>
+      <a href="https://bit.ly/society26" target="_blank" class="btn btn-success text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-700 transition">
+        Join via WhatsApp
+      </a>
+    </section>
 
-<div id="progress">Riddle 1 / 100</div>
-<p id="riddle"></p>
+    <section class="mt-8 text-center">
+      <h2 class="text-lg font-semibold mb-4">How ANK Society Works</h2>
+      <ul class="list-disc list-inside space-y-2 text-left max-w-md mx-auto">
+        <li>Users contribute funds into a secure multi-signature blockchain wallet.</li>
+        <li>11 trusted members hold the private keys for withdrawals.</li>
+        <li>Funds are only used for emergencies and risk mitigation.</li>
+        <li>Transparent and secure — all activity can be tracked.</li>
+        <li>No profits or individual shares — purely collective protection.</li>
+      </ul>
+    </section>
+  </main>
 
-<input id="answer" placeholder="Type answer"/>
-<br>
-<button onclick="submitAnswer()">Submit</button>
+  <!-- Footer -->
+  <footer class="bg-gray-200 text-gray-700 text-center p-4 mt-12">
+    &copy; 2026 ANK Society
+  </footer>
 
-<div id="feedback"></div>
-
-<div id="success">
-🎉 Challenge Complete  
-<br><br>
-<span id="finalScore"></span>
-<br><br>
-<div id="claimLink"></div>
-</div>
-</div>
-
-<script>
-
-const riddles = [
-["What has keys but can't open locks?","keyboard"],
-["What has hands but cannot clap?","clock"],
-["What has a face and two hands but no arms?","clock"],
-["What runs but never walks?","water"],
-["What has a neck but no head?","bottle"],
-["What gets wetter as it dries?","towel"],
-["What has one eye but cannot see?","needle"],
-["What goes up but never comes down?","age"],
-["What has teeth but can't bite?","comb"],
-["What begins with T ends with T and has tea inside?","teapot"],
-["I speak without a mouth and hear without ears. What am I?","echo"],
-["What can travel around the world while staying in a corner?","stamp"],
-["The more you take the more you leave behind","footsteps"],
-["What has many rings but no fingers?","tree"],
-["What has legs but doesn't walk?","table"],
-["What has an eye but cannot see?","hurricane"],
-["What is always in front of you but can't be seen?","future"],
-["What can you catch but not throw?","cold"],
-["What has a head and tail but no body?","coin"],
-["What has words but never speaks?","book"],
-["I shave every day but my beard stays the same","barber"],
-["What has branches but no fruit trunk or leaves?","bank"],
-["What can fill a room but takes no space?","light"],
-["If you drop me I'm sure to crack","egg"],
-["What comes once in a minute twice in a moment never in a thousand years?","m"],
-["What goes through cities and fields but never moves?","road"],
-["I’m tall when young short when old","candle"],
-["What has a bottom at the top?","legs"],
-["What invention lets you look through a wall?","window"],
-["What can’t talk but will reply when spoken to?","echo"],
-["What building has the most stories?","library"],
-["The more you remove from me the bigger I get","hole"],
-["What kind of band never plays music?","rubber band"],
-["What has four wheels and flies?","garbage truck"],
-["What has a heart that doesn’t beat?","artichoke"],
-["I have cities but no houses","map"],
-["What has a thumb and four fingers but isn’t alive?","glove"],
-["What gets bigger the more you take away?","hole"],
-["What has ears but cannot hear?","corn"],
-["What has one head one foot and four legs?","bed"],
-["I’m full of holes but hold water","sponge"],
-["What begins with E but has only one letter?","envelope"],
-["What has many keys but can’t play music?","piano"],
-["What gets sharper the more you use it?","brain"],
-["What has a ring but no finger?","phone"],
-["I fly without wings cry without eyes","cloud"],
-["What can you hold without touching?","breath"],
-["What has a spine but no bones?","book"],
-["What is always running but never tired?","river"],
-["What has a bark but no bite?","tree"],
-["What has stripes but no color?","zebra"],
-["What has a crown but no head?","pineapple"],
-["I have lakes but no water","map"],
-["What has a mouth but doesn’t eat?","river"],
-["What goes up and down without moving?","stairs"],
-["What can’t be used until broken?","egg"],
-["I’m not alive but I grow","crystal"],
-["What has four eyes but cannot see?","mississippi"],
-["What starts with P ends with E and has thousands of letters?","post office"],
-["What has hands but can’t hold anything?","clock"],
-["What is cut on a table but never eaten?","cards"],
-["What has many needles but doesn’t sew?","pine tree"],
-["What runs around a house but doesn’t move?","fence"],
-["What has an end but no beginning?","stick"],
-["What’s orange and sounds like a parrot?","carrot"],
-["What has four legs in morning two at noon three evening?","man"],
-["What has roots nobody sees","mountain"],
-["I’m light as feather but strongest man can’t hold me long","breath"],
-["What comes down but never goes up?","rain"],
-["What gets broken without being held?","promise"],
-["What kind of coat only gets put on when wet?","paint"],
-["I have wings but cannot fly","penguin"],
-["What is always hungry must be fed?","fire"],
-["What has wheels and eats metal?","train"],
-["What can you hear but not see?","sound"],
-["What has no life but can die?","battery"],
-["What has numbers but no math?","phone"],
-["What has pages but no ink?","calendar"],
-["What is black when clean white when dirty?","chalkboard"],
-["What can you break with a word?","silence"],
-["What has keys but no doors?","piano"],
-["What goes up when rain comes down?","umbrella"],
-["What can’t be seen but fills room?","air"],
-["What has shape but no weight?","shadow"],
-["What goes up chimney down but not down up?","umbrella"],
-["What is yours but others use more?","name"],
-["What has 13 hearts no organs?","deck"],
-["What comes before thunder?","lightning"],
-["What kind of room has no doors?","mushroom"],
-["What goes in hard comes out soft?","gum"],
-["What has one letter starts and ends?","envelope"],
-["What do you buy to eat but never eat?","plate"],
-["What has holes but holds liquid?","sponge"],
-["What can run but never walks mouth but never talks?","river"],
-["What falls but never breaks?","night"],
-["What breaks but never falls?","day"],
-["What has a horn but doesn’t honk?","rhino"],
-["What has scales but no music?","fish"],
-["What’s always ahead never behind?","future"],
-["What has feet but no legs?","yardstick"],
-["What gets longer when pulled?","rubber band"],
-["What has no beginning middle end?","circle"]
-];
-
-let index = parseInt(localStorage.getItem("riddleIndex")) || 0;
-let score = parseInt(localStorage.getItem("riddleScore")) || 0;
-
-function normalize(s){
- return s.trim().toLowerCase();
-}
-
-function showRiddle(){
- if(index >= riddles.length){
-     finish();
-     return;
- }
- document.getElementById("riddle").textContent = riddles[index][0];
- document.getElementById("progress").textContent = `Riddle ${index+1} / 100`;
-}
-
-function submitAnswer(){
-
- let user = normalize(document.getElementById("answer").value);
- let correct = riddles[index][1];
-
- if(user === correct) score++;
-
- index++;
-
- localStorage.setItem("riddleIndex", index);
- localStorage.setItem("riddleScore", score);
-
- location.reload(); // force refresh
-}
-
-function finish(){
-
- document.getElementById("success").style.display="block";
- document.getElementById("riddle").style.display="none";
- document.getElementById("answer").style.display="none";
- document.querySelector("button").style.display="none";
-
- document.getElementById("finalScore").innerHTML =
- "Your Score: " + score + " / 100";
-
- if(score === 100){
-     document.getElementById("claimLink").innerHTML =
-     '<a href="https://wa.me/233598866489" target="_blank">Click here to claim your score</a>';
- }
-
- localStorage.removeItem("riddleIndex");
- localStorage.removeItem("riddleScore");
-}
-
-showRiddle();
-
- </script>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4MZBQNZVPZ"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-4MZBQNZVPZ');
-</script>
-
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
