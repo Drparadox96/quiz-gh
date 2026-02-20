@@ -1,50 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ANK Society</title>
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Bootstrap CSS CDN -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Forex Calculator Suite | Lot Size, Risk & Profit Tool</title>
+<meta name="description" content="Advanced Forex calculator with major FX pairs, lot size calculator, profit calculator, spread cost and risk management tools. Free professional FX tool.">
+<meta name="keywords" content="forex calculator, lot size calculator, fx profit calculator, spread calculator, risk management forex, major forex pairs">
+<meta name="author" content="Annko FX Tools">
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-50 text-gray-800">
 
-  <!-- Header -->
-  <header class="bg-blue-600 text-white p-4 text-center">
-    <h1 class="text-2xl font-bold">ANK Society</h1>
-    <p class="mt-2">A mutual fund for collective risk protection</p>
-  </header>
+<body class="bg-gray-100 text-gray-800">
 
-  <!-- Main Section -->
-  <main class="container mx-auto my-8 px-4">
-    <section class="bg-white rounded-lg shadow-lg p-6 text-center">
-      <h2 class="text-xl font-semibold mb-4">Join ANK Society</h2>
-      <p class="mb-6">Contribute to a secure pool controlled by 11 trusted members. The funds are used only for emergencies and risk coverage. No profits or shares are distributed.</p>
-      <a href="https://bit.ly/society26" target="_blank" class="btn btn-success text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-700 transition">
-        Join via WhatsApp
-      </a>
-    </section>
+<div class="max-w-6xl mx-auto p-4">
 
-    <section class="mt-8 text-center">
-      <h2 class="text-lg font-semibold mb-4">How ANK Society Works</h2>
-      <ul class="list-disc list-inside space-y-2 text-left max-w-md mx-auto">
-        <li>Users contribute funds into a secure multi-signature blockchain wallet.</li>
-        <li>11 trusted members hold the private keys for withdrawals.</li>
-        <li>Funds are only used for emergencies and risk mitigation.</li>
-        <li>Transparent and secure — all activity can be tracked.</li>
-        <li>No profits or individual shares — purely collective protection.</li>
-      </ul>
-    </section>
-  </main>
+<h1 class="text-3xl font-bold text-center my-6">
+Professional Forex Calculator Suite
+</h1>
 
-  <!-- Footer -->
-  <footer class="bg-gray-200 text-gray-700 text-center p-4 mt-12">
-    &copy; 2026 ANK Society
-  </footer>
+<!-- Tabs -->
+<div class="flex flex-wrap justify-center gap-2 mb-6">
+<button onclick="showTab('lot')" class="tabBtn bg-blue-600 text-white px-4 py-2 rounded-lg">Lot Size</button>
+<button onclick="showTab('profit')" class="tabBtn bg-gray-300 px-4 py-2 rounded-lg">Profit</button>
+<button onclick="showTab('risk')" class="tabBtn bg-gray-300 px-4 py-2 rounded-lg">Risk</button>
+<button onclick="showTab('spread')" class="tabBtn bg-gray-300 px-4 py-2 rounded-lg">Spread</button>
+</div>
 
-  <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Shared Pair Selector -->
+<div class="bg-white p-4 rounded-xl shadow mb-6">
+<label class="font-semibold">Select FX Pair</label>
+<select id="pair" class="w-full p-2 mt-2 border rounded">
+<option value="EURUSD">EURUSD</option>
+<option value="GBPUSD">GBPUSD</option>
+<option value="USDJPY">USDJPY</option>
+<option value="USDCHF">USDCHF</option>
+<option value="AUDUSD">AUDUSD</option>
+<option value="USDCAD">USDCAD</option>
+<option value="NZDUSD">NZDUSD</option>
+
+<option value="EURGBP">EURGBP</option>
+<option value="EURJPY">EURJPY</option>
+<option value="EURCHF">EURCHF</option>
+<option value="EURAUD">EURAUD</option>
+<option value="EURCAD">EURCAD</option>
+<option value="GBPJPY">GBPJPY</option>
+<option value="GBPCHF">GBPCHF</option>
+<option value="AUDJPY">AUDJPY</option>
+<option value="CADJPY">CADJPY</option>
+<option value="CHFJPY">CHFJPY</option>
+<option value="NZDJPY">NZDJPY</option>
+
+<option value="XAUUSD">XAUUSD (Gold)</option>
+</select>
+</div>
+
+<!-- LOT SIZE -->
+<div id="lot" class="tabContent bg-white p-6 rounded-2xl shadow">
+<h2 class="text-xl font-semibold mb-4">Lot Size Calculator</h2>
+<input type="number" id="balance" placeholder="Account Balance ($)" class="w-full p-2 mb-3 border rounded">
+<input type="number" id="riskPercent" placeholder="Risk (%)" class="w-full p-2 mb-3 border rounded">
+<input type="number" id="stopLoss" placeholder="Stop Loss (pips)" class="w-full p-2 mb-3 border rounded">
+<button onclick="calculateLot()" class="w-full bg-blue-600 text-white p-2 rounded-lg">Calculate</button>
+<p class="mt-3 font-semibold" id="lotResult"></p>
+</div>
+
+<!-- PROFIT -->
+<div id="profit" class="tabContent hidden bg-white p-6 rounded-2xl shadow">
+<h2 class="text-xl font-semibold mb-4">Profit / Loss Calculator</h2>
+<input type="number" id="lotSize" placeholder="Lot Size" class="w-full p-2 mb-3 border rounded">
+<input type="number" id="pipMove" placeholder="Pip Movement" class="w-full p-2 mb-3 border rounded">
+<button onclick="calculateProfit()" class="w-full bg-green-600 text-white p-2 rounded-lg">Calculate</button>
+<p class="mt-3 font-semibold" id="profitResult"></p>
+</div>
+
+<!-- RISK -->
+<div id="risk" class="tabContent hidden bg-white p-6 rounded-2xl shadow">
+<h2 class="text-xl font-semibold mb-4">Risk Amount Calculator</h2>
+<input type="number" id="balanceRisk" placeholder="Account Balance ($)" class="w-full p-2 mb-3 border rounded">
+<input type="number" id="riskOnly" placeholder="Risk (%)" class="w-full p-2 mb-3 border rounded">
+<button onclick="calculateRisk()" class="w-full bg-purple-600 text-white p-2 rounded-lg">Calculate</button>
+<p class="mt-3 font-semibold" id="riskResult"></p>
+</div>
+
+<!-- SPREAD -->
+<div id="spread" class="tabContent hidden bg-white p-6 rounded-2xl shadow">
+<h2 class="text-xl font-semibold mb-4">Spread Cost Calculator</h2>
+<input type="number" id="spreadPips" placeholder="Spread (pips)" class="w-full p-2 mb-3 border rounded">
+<input type="number" id="spreadLot" placeholder="Lot Size" class="w-full p-2 mb-3 border rounded">
+<button onclick="calculateSpread()" class="w-full bg-red-600 text-white p-2 rounded-lg">Calculate</button>
+<p class="mt-3 font-semibold" id="spreadResult"></p>
+</div>
+
+<footer class="text-center mt-10 text-sm text-gray-600">
+© 2026 Annko FX Tools. Educational purposes only.
+</footer>
+
+</div>
+
+<script>
+function getPipValue(pair) {
+if (pair.includes("JPY")) return 9.1;
+if (pair === "XAUUSD") return 1;
+return 10;
+}
+
+function calculateLot() {
+let pair = document.getElementById("pair").value;
+let balance = parseFloat(document.getElementById("balance").value);
+let risk = parseFloat(document.getElementById("riskPercent").value);
+let stopLoss = parseFloat(document.getElementById("stopLoss").value);
+let pipValue = getPipValue(pair);
+
+if (!balance || !risk || !stopLoss) return;
+
+let riskAmount = balance * (risk / 100);
+let lotSize = riskAmount / (stopLoss * pipValue);
+
+document.getElementById("lotResult").innerText =
+"Recommended Lot Size: " + lotSize.toFixed(2);
+}
+
+function calculateProfit() {
+let pair = document.getElementById("pair").value;
+let lot = parseFloat(document.getElementById("lotSize").value);
+let pips = parseFloat(document.getElementById("pipMove").value);
+let pipValue = getPipValue(pair);
+
+if (!lot || !pips) return;
+
+let profit = lot * pips * pipValue;
+
+document.getElementById("profitResult").innerText =
+"Estimated P/L: $" + profit.toFixed(2);
+}
+
+function calculateRisk() {
+let balance = parseFloat(document.getElementById("balanceRisk").value);
+let risk = parseFloat(document.getElementById("riskOnly").value);
+if (!balance || !risk) return;
+let amount = balance * (risk / 100);
+document.getElementById("riskResult").innerText =
+"Risk Amount: $" + amount.toFixed(2);
+}
+
+function calculateSpread() {
+let pair = document.getElementById("pair").value;
+let spread = parseFloat(document.getElementById("spreadPips").value);
+let lot = parseFloat(document.getElementById("spreadLot").value);
+let pipValue = getPipValue(pair);
+
+if (!spread || !lot) return;
+
+let cost = spread * lot * pipValue;
+document.getElementById("spreadResult").innerText =
+"Spread Cost: $" + cost.toFixed(2);
+}
+
+function showTab(tabId) {
+document.querySelectorAll(".tabContent").forEach(tab => tab.classList.add("hidden"));
+document.getElementById(tabId).classList.remove("hidden");
+
+document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("bg-blue-600","text-white"));
+event.target.classList.add("bg-blue-600","text-white");
+}
+</script>
+
 </body>
 </html>
